@@ -1,6 +1,5 @@
 
 #include <VarSpeedServo.h> 
-#include <Servo.h> 
 
 VarSpeedServo servo1; //cria um novo objeto servo
 
@@ -20,17 +19,19 @@ void loop() {
     if (value == 'U') {
       Forward();
     } else if (value == 'D') {
-      Backward();
+        Backward();
     } else if (value == 'S') {
-      Stop();
+        Stop();
     } else if (value == 'L') {
-      Left();
+        Left();
     } else if (value == 'R') {
-      Right();
+        Right();
     } else if (value == 'P') {
-      Open();
+        Open();
     } else if (value == 'O') {
-      Close();
+        Close();
+    } else if (value == 'X') {
+        Stopserv();
     }
   }
 }
@@ -39,17 +40,14 @@ void loop() {
 
 void Open() {
   delay(15); // aguarda para executar o comando para evitar duplo click
-  servo1.write(180,20,false); // envia sinal para o servo abrir  com tempo 20, false para sobrepor caso seja enviado outro comando
-  if (value == 'X') {
-    servo1.stop();  // Para o servo na posição 
-  }
+  servo1.write(180,20,false); // envia sinal para o servo abrir com velociade 20, false para sobrepor caso seja enviado outro comando
 }
-void Close(value) {
+void Close() {
   delay(15); // aguarda para executar o comando para evitar duplo click
-  servo1.write(0,20,false); // envia sinal para o servo fechar com tempo 20, false para sobrepor caso seja enviado outro comando
-  if (value == 'X') {
-    servo1.stop();  // Para o servo na posição 
-  }
+  servo1.write(0,20,false); // envia sinal para o servo fechar com velocidade 20, false para sobrepor caso seja enviado outro comando 
+}
+void Stopserv() {
+  servo1.stop();  // Para o servo na posição 
 }
 
 // COMANDOS RODAS
